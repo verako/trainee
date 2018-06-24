@@ -17,6 +17,8 @@ class DatabaseSeeder extends Seeder
             'email' => 'vera@gmail.com',
             'password' => bcrypt('123456'),
         ]);
+          
+
 
     }
 }
