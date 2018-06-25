@@ -60,6 +60,13 @@
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
                             </div>
                         </div>
+                        <div class="form-group">
+                            <!-- <label for="role_id" class="col-md-4 control-label">role</label> type="number"-->
+
+                            <div class="col-md-6">
+                                <input id="role_id"  type="hidden" class="form-control" name="role_id" value="1" required>
+                            </div>
+                        </div>
 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
