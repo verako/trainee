@@ -19,8 +19,9 @@ class CreateMessagesTable extends Migration
             $table->string('message');
             $table->string('filename',255);
             $table->string('filepath',255);
-            $table->string('filemime',255);
+            $table->string('filemime');
             $table->integer('user_id')->unsigned();
+            $table->boolean('done')->default(false);
             $table->timestamps();
             $table->softDeletes();
         });
