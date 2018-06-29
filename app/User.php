@@ -26,4 +26,11 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function role(){
+        return $this->hasOne('App\Models\RoleModel','id','user_id');//связь с таблицей ролей один к одному
+    }
+     public function messages(){
+        return $this->hasMany('App\Models\MessagModel','user_id','id');//связь с таблицей ролей один ко многим
+    }
 }
