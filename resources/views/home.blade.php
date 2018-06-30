@@ -20,7 +20,7 @@
 
                     
                     @if ((Auth::user()->role_id)=='1')  
-                        <form class="form-horizontal" method="POST" action="{{ route('register') }}">
+                        <form class="form-horizontal" method="POST" action="{{url('/home')}}" enctype="multipart/form-data">
                             {{ csrf_field() }}
 
                             <div class="form-group{{ $errors->has('teme') ? ' has-error' : '' }}">
@@ -55,7 +55,7 @@
                                 <label for="file" class="col-md-4 control-label">File</label>
 
                                 <div class="col-md-6">
-                                    <input id="file" type="file" class="form-control" name="file" value="file" required>
+                                    <input id="file" type="file" class="form-control" multiple name="file" >
 
                                     @if ($errors->has('file'))
                                         <span class="help-block">
@@ -64,6 +64,14 @@
                                     @endif
                                 </div>
                             </div>
+
+                            <div class="form-group">
+                            <!-- <label for="done" class="col-md-4 control-label">done</label> type="number"-->
+
+                            <div class="col-md-6">
+                                <input id="done"  type="hidden" class="form-control" name="done" value="2" required>
+                            </div>
+                        </div>
 
                             <div class="form-group">
                                 <div class="col-md-6 col-md-offset-4">
