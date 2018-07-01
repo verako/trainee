@@ -96,20 +96,33 @@
                         </thead>
                      <!-- Table Body -->
                         <tbody>
+                            @foreach($messages as $message) 
+                            @if($message['done']==1)
+                            <tr style="background: #ddd;text-decoration:line-through">
+                            @else 
                             <tr>
+                            @endif   
+                                <td>{{$message['id']}}</td>
+                                <td>{{$message['teme']}}</td>
+                                <td>{{$message['message']}}</td>
+                                <td>{{$message->user->name}}</td>
+                                <td>{{$message->user->email}}</td>
+                                <td><a href="{{asset(substr(strrchr($message['filepath'], '/'), 1))}}">file</a></td> 
+                                <td>{{$message['created_at']}}</td>
                                 <td>
+                                    <form method="post" role="form" action="{{ url('/home',$message->id)}}" >
+                                    {{method_field('PUT')}}
+                                    {{ csrf_field() }}
+
+                                    <input id="done"  type="hidden" class="form-control" name="done" value="1" required>
+                                    <input type="submit" value="send">
                                     
+                                    </form>
                                 </td>
-                                <td>
-                                    
-                                </td>
-                                <td>
-        
-                                </td>
-                                <td>
-                                   
-                                </td>
+                                
                             </tr>
+                            @endforeach
+                            
                            </tbody>
                     </table>            
                     @endif

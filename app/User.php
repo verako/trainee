@@ -31,6 +31,6 @@ class User extends Authenticatable
         return $this->hasOne('App\Models\RoleModel','id','user_id');//связь с таблицей ролей один к одному
     }
      public function messages(){
-        return $this->hasMany('App\Models\MessagModel','user_id','id');//связь с таблицей ролей один ко многим
+        return $this->hasMany('App\Models\MessageModel','user_id','id');//связь с таблицей ролей один ко многим
     }
 }
