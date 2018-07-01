@@ -27,12 +27,21 @@ class HomeController extends Controller
     public function index()
     {
       // return view('home');
-
         $messages=MessageModel::all();
-        
-       //$messages= User::find(\Auth::user()->id+1)->messages()->paginate(5);
-        
-       return view('home',[ 'messages'  => $messages ]);
+        $user_id= User::find(\Auth::user()->id);
+        $user_id=$user_id['id'];
+        $message_user=MessageModel::find($user_id);
+        if ($message_user->count()) {
+            $last_message=MessageModel::where('user_id', '=', $user_id)->orderBy('created_at', 'desc')->first();
+            $last_message_time=strtotime($last_message['created_at']);
+            $time=time();
+            $time=$time-$last_message_time;
+            if ($time<86400) {
+               return redirect('/message');
+            }
+        }
+              
+        return view('home',[ 'messages'  => $messages ]);
         
     }
 

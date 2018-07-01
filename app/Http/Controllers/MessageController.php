@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\MessageModel;
+use App\User;
 
 class MessageController extends Controller
 {
@@ -13,7 +16,8 @@ class MessageController extends Controller
      */
     public function index()
     {
-        echo "Спасибо, Ваша заявка отправлена менеджеру!";
+                
+        return view('message');
       
     }
 
