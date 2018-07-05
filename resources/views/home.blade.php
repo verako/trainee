@@ -22,7 +22,6 @@
                     @if ((Auth::user()->role_id)=='1')  
                         <form class="form-horizontal" method="POST" action="{{url('/home')}}" enctype="multipart/form-data">
                             {{ csrf_field() }}
-
                             <div class="form-group{{ $errors->has('teme') ? ' has-error' : '' }}">
                                 <label for="teme" class="col-md-4 control-label">Teme</label>
                                 <div class="col-md-6">

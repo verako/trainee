@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\Request;
 use App\Models\MessageModel;
 use App\User;
+use App\Mail\Test;
 
 class HomeController extends Controller
 {
@@ -26,7 +28,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-      // return view('home');
+      // return view('home');86400
         $messages=MessageModel::all();
         $user_id= User::find(\Auth::user()->id);
         $user_id=$user_id['id'];
@@ -36,7 +38,7 @@ class HomeController extends Controller
             $last_message_time=strtotime($last_message['created_at']);
             $time=time();
             $time=$time-$last_message_time;
-            if ($time<86400) {
+            if ($time<5) {
                return redirect('/message');
             }
         }
@@ -103,12 +105,45 @@ class HomeController extends Controller
         
     }
 
+     /**
+     * Ship the given order.
+     *
+     * @param  Request  $request
+     * @param  int  $id
+     * @return Response
+     */
+    public function send(Request $request)
+    {
+        //$message = MessageModel::findOrFail($id);
+        $message=$request->message;
 
-   // protected function validator(array $data){
+
+        // Ship order...$request->user()
+
+        Mail::to('vera.kopylchuk@gmail.com')->send(new Test($message));
+    }
+
+  
+    // public function send(Request $request){
+
+    //     $teme=$request->teme;
+    //     $message=$request->message;
+
+    //     $mail_admin=env('MAIL_ADMIN'); 
+    //     //$data=['text'=>$request->get('message')];
+    //    \Mail::to($mail_admin)->send(Test($teme,$message));
+    //     // \Mail::send('emails.test', $data, function($message) use ($request){
+    //     //     $message->from($data['email'],$data['name']);
+    //     //     $message->to($mail_admin)->subject($request->get('subject'));});
+    // }
+
+
+
+   // protected function validator(messagearray $data){
    //      return \Validator::make($data,[
-   //          'first_name'=>'required|max:128|min:2',
-   //          'last_name'=>'required|max:128|min:2',
-   //          'email'=>'required|email|max:256|unique:subscribers'
+   //          'teme'=>'required|max:128|min:2',
+   //          'message'=>'required|min:2',
+   //          'email'=>'required|email|max:256|unique:users'
    //          ]);
    //  }
 
