@@ -22,4 +22,5 @@ Auth::routes();
 Route::resource('home', 'HomeController');//->name('home');
 
 Route::get('/message', 'MessageController@index');
-Route::post('/home','HomeController@send');
+//Route::post('/home','HomeController@send');
+Route::resource('pars', 'ParsController');
